@@ -1,11 +1,11 @@
 //your code here
 // Array of image URLs
 var images = [
-  'url_to_image1.jpg',
-  'url_to_image2.jpg',
-  'url_to_image3.jpg',
-  'url_to_image4.jpg',
-  'url_to_image5.jpg',
+  'url_to_img1.jpg',
+  'url_to_img2.jpg',
+  'url_to_img3.jpg',
+  'url_to_img4.jpg',
+  'url_to_img5.jpg',
 ];
 
 // Randomly select an image to repeat
@@ -21,49 +21,49 @@ for (var i = imageIndices.length - 1; i > 0; i--) {
 }
 
 // Render the images with shuffled sources and data-id attributes
-var imageContainer = document.getElementById('imageContainer');
-var tiles = imageContainer.getElementsByClassName('tile');
+var imageContainer = document.getElementByClassName('imageContainer');
+var img = imageContainer.getElementsByID('img');
 
 for (var i = 0; i < tiles.length; i++) {
-  var tile = tiles[i];
+  var img = tiles[i];
   tile.src = images[imageIndices[i]];
   tile.dataset.id = imageIndices[i];
   tile.addEventListener('click', handleTileClick);
 }
 
 // Track the state of the game
-var clickedTiles = [];
+var clickedImg = [];
 var resetButton = document.getElementById('reset');
 var verifyButton = document.getElementById('verify');
 var para = document.getElementById('para');
 
-function handleTileClick() {
-  var clickedTile = this;
+function handleImgClick() {
+  var clickedImg = this;
 
   // Prevent selecting the same tile twice
-  if (clickedTiles.length === 1 && clickedTiles[0] === clickedTile) {
+  if (clickedImg.length === 1 && clickedImg[0] === clickedImg) {
     return;
   }
 
   // Add clicked tile to the array
-  clickedTiles.push(clickedTile);
+  clickedImg.push(clickedImg);
 
   // Show the reset button
   resetButton.style.display = 'inline-block';
 
   // Check the state and update the UI accordingly
-  if (clickedTiles.length === 2) {
+  if (clickedImg.length === 2) {
     verifyButton.style.display = 'inline-block';
   }
 
   // Check if both clicked tiles are identical
-  if (clickedTiles.length === 2 && clickedTiles[0].dataset.id === clickedTiles[1].dataset.id) {
+  if (clickedImg.length === 2 && clickedImg[0].dataset.id === clickedImg[1].dataset.id) {
     para.textContent = 'You are a human. Congratulations!';
   }
 }
 
 function resetGame() {
-  clickedTiles = [];
+  clickedImg = [];
   resetButton.style.display = 'none';
   verifyButton.style.display = 'none';
   para.textContent = '';
